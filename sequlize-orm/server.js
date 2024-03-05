@@ -1,6 +1,7 @@
 import express from "express";
 import "dotenv/config";
-import exp from "constants";
+import connection from "./src/models/index.js";
+import userRouter from "./src/routes/user.routes.js";
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -13,9 +14,16 @@ app.get("/get-health", (req, res) => {
     message: "Server is up and running",
   });
 });
+app.use("/api/v1/users", userRouter);
 
 app.listen(8000, async () => {
   console.log(`Server is running on port ${port}`);
   try {
-  } catch (err) {}
+    await connection.authenticate();
+    // connection.sync({ force: true });
+    connection.sync();
+    console.log("Connection has been established successfully.");
+  } catch (err) {
+    console.error("Unable to connect to the database:", err);
+  }
 });
