@@ -11,12 +11,10 @@ router.post("/add", userController.addUser);
 router.get("/:id", userController.getUserById);
 
 //update the users
-
 router.put("/update/:id", userController.updateUser);
-// router.put("/update/:id", userController.updateUser);
 
 // //delete.
-// router.delete("/delete/:id", userController.deleteUser);
+router.delete("/delete/:id", userController.deleteUser);
 
 // // . localhost:8000/user/search/by?location=ktm
 // router.get("/search/by", userController.searchUserByLocation);

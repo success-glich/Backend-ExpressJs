@@ -45,4 +45,13 @@ export default class UserController {
     );
     res.status(200).json({ success: true, data });
   }
+  async deleteUser(req, res) {
+    const { id } = req.params;
+    if (!id)
+      return res
+        .status(400)
+        .json({ success: false, message: "User id not provided" });
+    const data = await userModel.destroy({ where: { id } });
+    res.status(200).json({ success: true, data });
+  }
 }
