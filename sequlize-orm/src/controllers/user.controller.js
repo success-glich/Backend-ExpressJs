@@ -1,6 +1,6 @@
 import connection from "../models/index.js";
 import userModel from "../models/user.model.js";
-
+import { Op } from "sequelize";
 export default class UserController {
   //* add user to Db
   async addUser(req, res) {
@@ -52,6 +52,18 @@ export default class UserController {
         .status(400)
         .json({ success: false, message: "User id not provided" });
     const data = await userModel.destroy({ where: { id } });
+    res.status(200).json({ success: true, data });
+  }
+  async searchUserByLocation(req, res) {
+    const { location } = req.query;
+    console.log(location);
+    const data = await userModel.findAll({
+      where: {
+        location: {
+          [Op.substring]: location,
+        },
+      },
+    });
     res.status(200).json({ success: true, data });
   }
 }

@@ -17,6 +17,6 @@ router.put("/update/:id", userController.updateUser);
 router.delete("/delete/:id", userController.deleteUser);
 
 // // . localhost:8000/user/search/by?location=ktm
-// router.get("/search/by", userController.searchUserByLocation);
+router.get("/search/by", userController.searchUserByLocation);
 
 export default router;
