@@ -32,4 +32,17 @@ export default class UserController {
 
     res.status(200).json({ success: true, data });
   }
+  async updateUser(req, res) {
+    const { id } = req.params;
+    const { username, location } = req.body;
+    if (!id)
+      return res
+        .status(400)
+        .json({ success: false, message: "User id not provided" });
+    const data = await userModel.update(
+      { username, location },
+      { where: { id } }
+    );
+    res.status(200).json({ success: true, data });
+  }
 }
