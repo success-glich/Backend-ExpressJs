@@ -13,9 +13,20 @@ passport.use(
     },
     function (accessToken, refreshToken, profile, cb) {
       console.log("profile", profile);
-      User.findOrCreate({ googleId: profile.id }, function (err, user) {
-        return cb(err, user);
-      });
+      // User.findOrCreate({ googleId: profile.id }, function (err, user) {
+      //   return cb(err, user);
+      // });
+      console.log("profile", profile);
+
+      return cb(null, profile);
     }
   )
 );
+
+passport.serializeUser(function (user, cb) {
+  cb(null, user);
+});
+
+passport.deserializeUser(function (user, cb) {
+  cb(null, user);
+});
