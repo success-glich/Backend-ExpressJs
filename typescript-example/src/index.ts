@@ -1,12 +1,10 @@
-import express, { NextFunction, Request, Response } from "express";
-
+import express from "express";
 const app = express();
+import userRouter from "./routes/users";
 
 const PORT = 3005;
 
-app.get("/users", (req: Request, res: Response, next: NextFunction) => {
-  res.send("hello");
-});
+app.use("/api/v1/users", userRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
