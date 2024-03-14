@@ -8,7 +8,11 @@ export default class UserController {
     req: Request<{}, {}, CreateUserDto, CreateUserQueryParams>,
     res: Response<User>
   ) {
-    const customField = req.customField;
+    // * TODO: req infer the customField but got server down
+    // const customField = req.customField;
+    // req.sessionID;
+    // req.user;
+    // req.isAuthenticated
     res.status(201).send({
       id: "1",
       username: "user123",
